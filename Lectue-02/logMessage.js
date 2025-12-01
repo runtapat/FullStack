@@ -1,4 +1,4 @@
-function createLogEntry(message){
+function func_createLogEntry(message){
     const now = new Date();
     const timestamp = now.toLocaleTimeString('th-TH');
     const eventId = Math.random().toString(16).substring(2,10).toUpperCase()
@@ -8,5 +8,5 @@ function createLogEntry(message){
     return `[${timestamp}] [${eventId}] - ${logMessage}`
 
 }
-const log = createLogEntry("User login successful")
+const log = func_createLogEntry("User login successful")
 console.log(log)
