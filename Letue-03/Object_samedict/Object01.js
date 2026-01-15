@@ -4,8 +4,8 @@ const book = {
     isAvailable: true,
 
     Checkout: function() {
-        this.isAvailable = false;
-        this.title = "1984 - Checked Out";
+        for let i in book
+        }
 
     },
     CheckIn: function() {
