@@ -1,42 +1,43 @@
 const library = {
-    books: [],
+  books: [],
 
-    addBook: function (book) {
-        // TODO: เขียนโค้ดสำหรับเพิ่มหนังสือ
-        for (let i = 0; i < this.books.length; i++) {
-            if (this.books[i].title === book.title) {
-                console.log(`The book "${book.title}" already exists in the library.`)
-                return
-            }
-        }
-        this.books.push(book)
-        console.log(`Add ${book.title}`);
-        
-    },
+  addBook: function (book) {
+    const exists = this.books.some(b => b.title === book.title); //ให้ค่าเป็น Ture หากมีตัวที่ค้นหาอยู่ในนั้น
 
-    removeBook: function (title) {
-        this.books = this.books.filter(b => b.title !== title)
-    },
-
-    listBooks: function () {
-        let status;
-        this.books.forEach((book, index) => {
-            if (book.isRead === true) {
-            status = "อ่านแล้ว";
-        }else {
-            status = "ยังไม่ได้อ่าน";
-        }
-        console.log(`${index + 1}. ชื่อ: ${book.title}, ผู้แต่ง: ${book.author}, ปีที่พิมพ์: ${book.year}, สถานะ: ${status}`)
-        });
-
-    },
-
-    getUnreadBooks: function () {
-        return this.books.filter(book => book.isRead == false);
+    if (exists) {
+      console.log(`The book "${book.title}" already exists in the library.`);
+      return; //ออกทันทีมีหนังสืออยู่แล้ว
     }
+
+    this.books.push(book);
+    console.log(`The book "${book.title}" has been added to the library.`);
+  },
+
+  removeBook: function (title) {
+    const index = this.books.findIndex(b => b.title === title);
+
+    if (index === -1) {
+      console.log(`The book "${title}" was not found in the library.`);
+      return;
+    }
+
+    this.books.splice(index, 1);
+    console.log(`The book "${title}" has been removed from the library.`);
+  },
+
+  listBooks: function () {
+    this.books.forEach((book, index) => {
+      const status = book.isRead ? "อ่านแล้ว" : "ยังไม่ได้อ่าน";
+      console.log(
+        `${index + 1}. ชื่อ: ${book.title}, ผู้แต่ง: ${book.author}, ปีที่พิมพ์: ${book.year}, สถานะ: ${status}`
+      );
+    });
+  },
+
+  getUnreadBooks: function () {
+    return this.books.filter(book => !book.isRead);
+  },
 };
-
-
 library.addBook({ title: "The Great Gatsby", author: "F. Scott Fitzgerald", year: 1925, isRead: true });
 library.addBook({ title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960, isRead: false });
 library.addBook({ title: "1984", author: "George Orwell", year: 1949, isRead: true });
@@ -57,5 +58,3 @@ library.listBooks();
 1. ชื่อ: The Great Gatsby, ผู้แต่ง: F. Scott Fitzgerald, ปีที่พิมพ์: 1925, สถานะ: อ่านแล้ว
 2. ชื่อ: To Kill a Mockingbird, ผู้แต่ง: Harper Lee, ปีที่พิมพ์: 1960, สถานะ: ยังไม่ได้อ่าน
 */
-
-

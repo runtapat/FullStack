@@ -2,22 +2,21 @@ const book = {
     title: "1984",
     author: "George Orwell",
     isAvailable: true,
-
-    Checkout: function() {
-        for let i in book
-        }
-
-    },
-    CheckIn: function() {
-        this.isAvailable = true;
-        this.title = "1984 - Available";
-    }
 };
 
-console.log(book.isAvailable);
-book.Checkout();
-console.log(book.isAvailable);
-console.log(book.title);
-book.CheckIn();
-console.log(book.isAvailable);
-console.log(book.title);
+for (let [key, value] of Object.entries(book)) {
+  console.log(`${key}: ${value}`);
+}
+
+for (let key in book) {
+  console.log(key, book[key]);
+}
+
+Object.entries(book).forEach(([key, value]) => {
+  console.log(key, value);
+});
+
+
+Object.keys(book).forEach(key => {
+  console.log(key ,book[key]);
+});

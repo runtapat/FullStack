@@ -2,25 +2,16 @@ function countString(input, type) {
     const aeiou = ['a', 'e', 'i', 'o', 'u'];
     let i = 0
     if (type == 'w'){
-        const trimm = input.trim();
-        console.log(trimm);
-            if (trimm == "") return 0
-        trimm.split(" ").filter(word => word !== "").length
-        console.log(input.trim().split(" "));
-        
+            if (input == "") return 0
+        return input.trim().split(" ").filter(word => word !== "").length   
     }
     if (type == 'v'){
-        for (let char of input.toLowerCase()) {
-            aeiou.forEach(vowel => {
-                if (char === vowel) {
-                    i += 1
-                }
-            })
-      
-        }
-        return i
+        return input.toLowerCase().split("").filter(ch => aeiou.includes(ch)).length;
     }
-    console.log("SDSDSD",input.split("").filter(word => word !== " ").length);
+    if (type == "c"){
+        return input.trim().split("").filter(word => word !== "").length
+    }
+    
 }
 // Example usage
 console.log("Word count:", countString(" Hello world, how are you? ", "w")); // Output: 5
